@@ -2,7 +2,7 @@ import Logo from "./Logo";
 
 export default function Header() {
   return (
-    <header className="h-[1%]" style={styles.container}>
+    <header className="md:h-[15%]" style={styles.container}>
       <Logo></Logo>
       <nav>
         <ul style={styles.nav}>

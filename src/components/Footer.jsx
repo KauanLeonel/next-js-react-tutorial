@@ -2,7 +2,7 @@ import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <footer className="h-[10%]" style={styles.container}>
+    <footer className="md:h-[10%]" style={styles.container}>
       <Logo></Logo> 
       <div> Teste</div>
     </footer>

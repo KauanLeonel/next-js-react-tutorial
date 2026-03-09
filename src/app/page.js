@@ -1,18 +1,29 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Aside from "@/components/Aside"
+import Aside from "@/components/Aside";
 
 const nome = "Kauan Leonel";
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen">
+    <div className="min-h-screen flex flex-col">
       <Header></Header>
-      <div className="h-[75%] w-[100%]" style={styles.align}>
-      <Aside></Aside>
-      <div style={styles.container} className="w-[70%]">
-        <h1> Se perguntarem o que é o amor - {nome}</h1></div>
-      
+      <div
+        className="flex flex-col md:flex-row flex-1 w-full"
+        style={styles.align}
+      >
+        <Aside></Aside>
+        <div
+          style={styles.container}
+          className="w-full md:w-[70%] bg-yellow-400 p-6"
+        >
+          <div
+  
+            className="bg-[url(https://upload.wikimedia.org/wikipedia/commons/f/f0/FSAC-KK-11888.jpg)] bg-[length:50%] h-screen bg-repeat"
+          >
+            Conteúdo
+          </div>
+        </div>
       </div>
       <Footer></Footer>
     </div>
@@ -20,11 +31,11 @@ export default function Home() {
 }
 
 const styles = {
-  container : {
-    backgroundColor : "#ffd900"
+  container: {
+    backgroundColor: "#ffd900",
   },
-  align :{
+  align: {
     display: "flex",
-    flexDirection: "row"
-  }
-}
+    flexDirection: "row",
+  },
+};
