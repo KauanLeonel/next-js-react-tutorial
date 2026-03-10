@@ -1,15 +1,28 @@
 import Logo from "./Logo";
+import { GiFrogFoot } from "react-icons/gi";
 
 export default function Header() {
   return (
-    <header className="md:h-[15%]" style={styles.container}>
+    <header  style={styles.container}>
       <Logo></Logo>
       <nav>
         <ul style={styles.nav}>
-          <li>Home</li>
-          <li>Products</li>
-          <li>About</li>
-          <li>Contacts</li>
+          <li style={styles.logo}>
+            <GiFrogFoot />
+            Home
+          </li>
+          <li style={styles.logo}>
+            <GiFrogFoot />
+            Products
+          </li>
+          <li style={styles.logo}>
+            <GiFrogFoot />
+            About
+          </li>
+          <li style={styles.logo}>
+            <GiFrogFoot />
+            Contacts
+          </li>
         </ul>
       </nav>
     </header>
@@ -18,7 +31,7 @@ export default function Header() {
 
 const styles = {
   container: {
-    backgroundColor: "rgb(255, 0, 191)",
+    backgroundColor: "rgb(43, 12, 0)",
     color: "#fff",
     display: "flex",
     justifyContent: "space-between",
@@ -29,5 +42,11 @@ const styles = {
     display: "flex",
     listStyleType: "none",
     gap: 20,
+  },
+  logo: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10
   },
 };

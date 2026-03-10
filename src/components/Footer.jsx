@@ -2,15 +2,17 @@ import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <footer className="md:h-[10%]" style={styles.container}>
+    <footer style={styles.container}>
       <Logo></Logo> 
-      <div> Teste</div>
     </footer>
   );
 }
 
 const styles ={
     container:{
-        backgroundColor: "#3700ff",
+        backgroundColor: "rgb(43, 12, 0)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     }
 };
