@@ -13,6 +13,7 @@ const styles ={
         backgroundColor: "rgb(43, 12, 0)",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        
     }
 };

@@ -7,12 +7,12 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       <Header className="md:h-[15%]"></Header>
-      <div className="flex flex-col md:flex-row flex-1 w-full">
+      <div className="flex flex-col md:flex-row flex-1 md:h-[10%]">
         <Aside>
-          <div>
-            <CardUser name="spinossaur" desc="Vela dorsal" avatar="https://static.thenounproject.com/png/411113-200.png" forca = "50"/>
-            <CardUser name="velocraptor" desc="Garra pontuda" avatar="https://static.thenounproject.com/png/168648-200.png" forca = "25"/>
-            <CardUser name="triceratops" desc="Três chifres" avatar="https://static.thenounproject.com/png/359510-200.png" forca = "30"/>
+          <div className="flex gap-1 flex-col">
+            <CardUser name="Spinossaur" desc="Vela dorsal" avatar="https://static.thenounproject.com/png/411113-200.png" forca = "50"/>
+            <CardUser name="Velocraptor" desc="Garra pontuda" avatar="https://static.thenounproject.com/png/168648-200.png" forca = "25"/>
+            <CardUser name="Triceratops" desc="Três chifres" avatar="https://static.thenounproject.com/png/359510-200.png" forca = "30"/>
           </div>
         </Aside>
         <div

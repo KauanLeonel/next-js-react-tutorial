@@ -13,6 +13,7 @@ export default function Aside({children}) {
 const styles ={
     container:{
         backgroundColor: "rgb(71, 25, 6)",
+        
     },
     card:{
       padding: "10px"
