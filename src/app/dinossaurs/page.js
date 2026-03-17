@@ -1,38 +1,50 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Aside from "@/components/Aside";
-import CardUser from "@/components/CardUser";
+import CardDinossaur from "@/components/CardDinossaur";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
-      <Header className="md:h-[15%]"></Header>
-      <div className="flex flex-col md:flex-row flex-1 w-full">
-        
-          <div>
-            <CardUser name="spinossaur" desc="Vela dorsal" avatar="https://static.thenounproject.com/png/411113-200.png" forca = "50"/>
-            <CardUser name="velocraptor" desc="Garra pontuda" avatar="https://static.thenounproject.com/png/168648-200.png" forca = "25"/>
-            <CardUser name="triceratops" desc="Três chifres" avatar="https://static.thenounproject.com/png/359510-200.png" forca = "30"/>
-          </div>
-        
-        <div
-          style={styles.container}
-          className="w-full md:w-[70%] bg-yellow-400 p-6"
-        >
-          <div className="relative">
-            <div
-              className="absolute inset-0 bg-[url('https://cdn.paleo.gg/games/jwpo/images/dino/carnotaurus.png)] 
-    bg-center 
-    bg-no-repeat 
-    bg-[length:300px] 
-    opacity-30"
-            />
+    // min-h-screen garante que o fundo cubra a tela toda, mas permite crescer se tiver muito card
+    <div className="flex flex-col min-h-screen">
+      
+      {/* Header: Altura automática no mobile, fixa se desejar no desktop */}
+      <Header className="w-full py-4 md:h-[15%]" />
 
-            <div className="relative z-10 p-6 text-white"></div>
+      {/* Main Container: No mobile empilha (col), no desktop fica lado a lado (row) */}
+      <main className="flex flex-col md:flex-row flex-1 w-full bg-[#85440f]">
+        
+        {/* Grid de Cards: O 'flex-1' faz ele ocupar o espaço que sobrar */}
+        <div className="flex-1 p-6">
+          <div className="flex flex-row flex-wrap justify-center md:justify-start gap-6">
+            <CardDinossaur
+              name="Spinossaur"
+              avatar="  https://i.pinimg.com/474x/bc/a2/cd/bca2cd6fbe272888ae218fdb2224867f.jpg"
+              strength="50"
+              category="Terópode"
+              desc = "Possui uma enorme vela nas costas, nadador habilidoso, misto de terrestre e aquático."
+            />
+            <CardDinossaur
+              name="Velociraptor"
+              avatar="https://i.pinimg.com/originals/40/ed/25/40ed25032222abfc47539fa18f1bc87a.png"
+              strength="25"
+              category="Terópode"
+              desc = "Pequeno, rápido, caçador em bando, conhecido por garras afiadas e estratégia de caça."
+            />
+            <CardDinossaur
+              name="Triceratops"
+              avatar="https://i.pinimg.com/474x/96/38/ea/9638ea8558c3f2ac83fd53f0debf23fe.jpg"
+              strength="30"
+              category="Ceratopsídeo"
+              desc = "Possui três chifres e uma gola óssea; defensor natural, forte e resistente."
+            />
+            
           </div>
         </div>
-      </div>
-      <Footer className="md:h-[10%]"></Footer>
+
+
+      </main>
+
+      <Footer className="w-full py-4 md:h-[10%]" />
     </div>
   );
 }
@@ -44,5 +56,11 @@ const styles = {
   align: {
     display: "flex",
     flexDirection: "row",
+  },
+  cards: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "20px",
+    width: "100%",
   },
 };

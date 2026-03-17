@@ -5,6 +5,9 @@ export default function CardUser(props) {
       <div>
         <h2>{props.name}</h2>
         <p>{props.desc}</p>
+        <div>
+          <h2>{props.category}</h2>
+        </div>
       </div>
     </div>
   );
@@ -18,12 +21,18 @@ const styles = {
     padding: "20px",
     border: "1px solid #000000",
     borderRadius: 8,
-    backgroundColor: "#da811b81"
+    backgroundColor: "#da811b81",
+    
     
   },
   image: {
     width: 80,
     height: 80,
     borderRadius: 40,
+    filter: "invert(100%)"
   },
+
+  section:{
+    borderRadius: "1px"
+  }
 };
