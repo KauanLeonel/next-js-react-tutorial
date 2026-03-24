@@ -7,48 +7,37 @@ export default function CardDinossaur(props) {
   const [heart, setHeaert] = useState(false);
 
   return (
-    <div style={styles.container}>
-      <div>
-        {heart ? (
-        <FaHeart
-        border = "1px black"
-          onClick={() => {
-            setHeaert(!heart);
-          }}
-        />
-        ) : (
-        <FaHeart
-          color="red"
-          onClick={() => {
-            setHeaert(!heart);
-          }}
-        />
-        ) }
-      </div>
-      {tourn ? (
-        <>
-          <div>
-            <img src={props.avatar} alt={props.name} style={styles.image} />
-          </div>
+    <div style={styles.wrapper}>
+      <div
+        style={{
+          ...styles.card,
+          transform: tourn ? "rotateY(0deg)" : "rotateY(180deg)",
+        }}
+      >
+        {/* Frente */}
+        <div style={styles.front}>
+          <FaHeart
+            color={heart ? "red" : "gray"}
+            onClick={() => setHeaert(!heart)}
+          />
+
+          <img src={props.avatar} alt={props.name} style={styles.image} />
 
           <h2 style={styles.name}>{props.name}</h2>
 
           <div style={styles.category}>{props.category}</div>
 
           <div style={styles.strength}>Strength: {props.strength}</div>
-        </>
-      ) : (
-        <div style={styles.strength}> {props.desc}</div>
-      )}
+        </div>
 
-      <button
-        type="button"
-        style={styles.strength}
-        onClick={() => {
-          setTourn(!tourn);
-        }}
-      >
-        Adicionar
+        {/* Verso */}
+        <div style={styles.back}>
+          <p>{props.desc}</p>
+        </div>
+      </div>
+
+      <button onClick={() => setTourn(!tourn)} style={styles.button}>
+        Virar
       </button>
     </div>
   );
@@ -102,5 +91,60 @@ const styles = {
     padding: "6px 12px",
     borderRadius: 6,
     fontWeight: "bold",
+  },
+  wrapper: {
+    perspective: "1000px",
+    width: "180px",
+    height: "360px",
+  },
+
+  card: {
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    transformStyle: "preserve-3d",
+    transition: "transform 0.6s",
+  },
+
+  front: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backfaceVisibility: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "10px",
+    padding: "20px",
+    border: "1px solid black",
+    borderRadius: 10,
+    backgroundColor: "#a36e3181",
+  },
+
+  back: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backfaceVisibility: "hidden",
+    transform: "rotateY(180deg)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "20px",
+    border: "1px solid black",
+    borderRadius: 10,
+    backgroundColor: "#4e2102",
+    color: "white",
+    textAlign: "center",
+  },
+
+  button: {
+    marginTop: "10px",
+    padding: "6px 12px",
+    borderRadius: "8px",
+    backgroundColor: "#5c2e0c",
+    color: "white",
+    cursor: "pointer",
+    border: "none",
   },
 };

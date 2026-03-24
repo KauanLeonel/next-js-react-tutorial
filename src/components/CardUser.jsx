@@ -4,10 +4,7 @@ export default function CardUser(props) {
       <img src={props.avatar} alt={props.name} style={styles.image} />
       <div>
         <h2>{props.name}</h2>
-        <p>{props.desc}</p>
-        <div>
-          <h2>{props.category}</h2>
-        </div>
+        <p>{props.email}</p>
       </div>
     </div>
   );
@@ -15,6 +12,8 @@ export default function CardUser(props) {
 
 const styles = {
   container: {
+    width: "350px",
+    height: "120px",
     display: "flex",
     alignItems: "center",
     gap: "20px",
@@ -22,17 +21,15 @@ const styles = {
     border: "1px solid #000000",
     borderRadius: 8,
     backgroundColor: "#da811b81",
-    
-    
   },
   image: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    filter: "invert(100%)"
+    //filter: "invert(100%)"
   },
 
-  section:{
-    borderRadius: "1px"
-  }
+  section: {
+    borderRadius: "1px",
+  },
 };
