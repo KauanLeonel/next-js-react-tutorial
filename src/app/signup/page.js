@@ -28,7 +28,7 @@ export default function SignUp() {
         const data = await response.json();
         console.log(data);
     }else{
-        console.log("ERRO TO CREATE A COUNT");
+        console.log("ERRO TO CREATE A COUNT", response.json);
     }
   }
 

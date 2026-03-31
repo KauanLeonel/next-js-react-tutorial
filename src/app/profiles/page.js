@@ -37,11 +37,14 @@ export default function Home() {
         <div className="flex-1 p-6">
           <div className="flex flex-row flex-wrap justify-center md:justify-start gap-6">
             {isLoading ? <p>Carregando</p> : 
-              users.map(user => <CardUser key= 
-                {user.id}
+              users.map(user => <CardUser 
+                key= {user.id}
                 avatar = {user.avatar}
                 name = {user.name}
                 email = {user.email}
+                id = {user.id}
+                users = {users}
+                setUsers = {setUsers}
                 />)
             }
           </div>
