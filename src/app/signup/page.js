@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Aside";
+import {useUserStore} from "@/stores/userStore.js"
 
 
 export default function SignUp() {
@@ -13,6 +14,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [avatar, setAvatar] = useState("");
+  const {users, addUsers} = useUserStore();
 
   const handleSubmit =async (e) => {
     e.preventDefault()
@@ -26,6 +28,7 @@ export default function SignUp() {
     })
     if(response.ok){
         const data = await response.json();
+        addUsers(data);
         console.log(data);
     }else{
         console.log("ERRO TO CREATE A COUNT", response.json);

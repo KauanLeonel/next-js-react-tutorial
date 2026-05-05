@@ -1,30 +1,34 @@
 "use client";
 
+import {useUserStore} from "@/stores/userStore.js"
 import { useState } from "react";
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CardUser from "@/components/CardUser";
 
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+  //const [users, setUsers] = useState([]); Prop driling
+  const {users, updateUsers} = useUserStore();
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await fetch("http://localhost:3333/user ");
+      const response = await fetch("http://localhost:3333/user");
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        setUsers(data.users);
+        updateUsers(data.users);
       } else {
         const data = await response?.json();
         console.log(data);
       }
+    setIsLoading(false);
     };
     getUsers();
-    setIsLoading(false);
-  }, []);
+    
+  }, [updateUsers]);
   return (
     // min-h-screen garante que o fundo cubra a tela toda, mas permite crescer se tiver muito card
     <div className="flex flex-col min-h-screen">
@@ -43,8 +47,8 @@ export default function Home() {
                 name = {user.name}
                 email = {user.email}
                 id = {user.id}
-                users = {users}
-                setUsers = {setUsers}
+                //users = {users}
+                //setUsers = {setUsers}
                 />)
             }
           </div>

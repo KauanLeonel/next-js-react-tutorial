@@ -1,8 +1,11 @@
 "use client";
 
+import {useUserStore} from "@/stores/userStore.js"
+
 import { FaUserEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { useState } from "react";
+
 
 export default function CardUser(props) {
   const [modal, setModal] = useState(false);
@@ -11,6 +14,8 @@ export default function CardUser(props) {
   const [email, setEmail] = useState(props.email);
   const [pass, setPass] = useState("");
   const [avatar, setAvatar] = useState(props.avatar);
+  const {users, updateUsers} = useUserStore();
+  
 
   const handleDelete = async () => {
     console.log("Deletar user", props.id);
@@ -20,9 +25,9 @@ export default function CardUser(props) {
     const data = (await response?.json()) || {};
     if (response.ok) {
       alert("Usuário deletado com sucesso", data);
-      const usersUpdated = props.users.filter(user => user.id !== props.id);
-
-      props.setUsers(usersUpdated);
+      const usersUpdated = users.filter(user => user.id !== props.id);
+      updateUsers(usersUpdated);
+      //props.setUsers(usersUpdated);
     } else {
       alert("Usuário deletado sem sucesso", data);
     }
@@ -46,7 +51,7 @@ export default function CardUser(props) {
     const data = (await response?.json()) || {};
     if (response.ok) {
       alert("Usuário atualizado com sucesso", data);
-      const usersUpdated = props.users.map(user =>{
+      const usersUpdated = users.map(user =>{
         if(user.id === props.id){
           return {
             ...user,
@@ -57,7 +62,9 @@ export default function CardUser(props) {
         }
         return user;
       })
-      props.setUsers(usersUpdated)
+            updateUsers(usersUpdated);
+
+      //props.setUsers(usersUpdated)
 
     } else {
       alert("Usuário atualizado sem sucesso", data);
