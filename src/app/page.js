@@ -1,49 +1,75 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Aside from "@/components/Aside";
+'use client';
 import CardUser from "@/components/CardUser";
-
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Sidebar from "@/components/Aside";
+import { useEffect, useState } from "react";
+import { useUserStore } from "@/stores/userStore";
 
 export default function Home() {
-  return (
-    <div className="flex flex-col h-screen overflow-hidden">
-      <Header className="md:h-[15%]"></Header>
-      <div className="flex flex-col md:flex-row flex-1 md:h-[10%]">
-        <Aside>
-          <div className="flex gap-1 flex-col">
-            <CardUser name="Spinossaur" desc="Vela dorsal" avatar="https://static.thenounproject.com/png/411113-200.png" forca = "50"/>
-            <CardUser name="Velocraptor" desc="Garra pontuda" avatar="https://static.thenounproject.com/png/168648-200.png" forca = "25"/>
-            <CardUser name="Triceratops" desc="Três chifres" avatar="https://static.thenounproject.com/png/359510-200.png" forca = "30"/>
-          </div>
-        </Aside>
-        <div
-          style={styles.container}
-          className="w-full md:w-[70%] bg-yellow-400 p-6"
-        >
-          <div className="relative">
-            <div
-              className="absolute inset-0 bg-[url('https://cdn.paleo.gg/games/jwpo/images/dino/carnotaurus.png)] 
-    bg-center 
-    bg-no-repeat 
-    bg-[length:300px] 
-    opacity-30"
-            />
 
-            <div className="relative z-10 p-6 text-white"></div>
-          </div>
+  const [isLoading, setIsLoading] = useState(true);
+  //const [users, setUsers] = useState([]);
+  const { users, updateUsers } = useUserStore();
+
+  useEffect(() => {
+
+    const getUsers = async () => {
+      const response = await fetch('http://localhost:3333/user')
+      if(response.ok){
+        const data = await response.json();
+        console.log(data);
+        updateUsers(data.users);
+      } else{
+        const data = await response?.json();
+        console.error('Erro ao buscar usuários', data);
+      }
+    }
+    getUsers()
+    setIsLoading(false)
+  }, [updateUsers])
+
+  
+  return (
+    <div>
+      <Header />
+      <section style={styles.section}>
+        <Sidebar />
+        <main>
+          <h1>Home</h1>
+          <p>Conteúdo da página Home</p>
+          <div style={styles.container}>
         </div>
-      </div>
-      <Footer className="md:h-[10%]"></Footer>
+          <div style={styles.users}>
+            {isLoading ? <p>Carregando...</p> : 
+              users.map(user => 
+                <CardUser 
+                  key={user.id}
+                  id={user.id}
+                  avatar={user.avatar}
+                  name={user.name}
+                  email={user.email}
+                />
+              )
+            }
+          </div>
+          
+        </main>
+      </section>
+      <Footer />
     </div>
   );
 }
 
 const styles = {
-  container: {
-    backgroundColor: "#85440f",
-  },
-  align: {
+  section: {
     display: "flex",
-    flexDirection: "row",
+    gap: 20,
+    padding: 20,
   },
+  users: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 20
+  }
 };
